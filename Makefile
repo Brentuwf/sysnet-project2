@@ -4,7 +4,7 @@ CC = g++
 OBJS =  
 SRC =  
 HDR =  
-BINARY = 
+BINARY = mt-collatz
 
 ${BINARY}: ${OBJS} 
 	${CC} -o ${BINARY} ${OBJS}
