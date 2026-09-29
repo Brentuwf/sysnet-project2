@@ -3,7 +3,7 @@ LDFLAGS = -pthread
 CC = g++
 
 OBJS =  
-SRC =  
+SRC = mt-collatz.cpp 
 HDR =  
 BINARY = mt-collatz
 
