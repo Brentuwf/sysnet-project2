@@ -2,9 +2,9 @@ CXXFLAGS = -std=c++11 -g -Wall -Wextra -Wpedantic
 LDFLAGS = -pthread
 CC = g++
 
-OBJS = mt-collatz.o CommandLineParser.o TimeHistogram.o CollatzCalculator.o ThreadManager.o 
-SRC = mt-collatz.cpp CommandLineParser.cpp TimeHistogram.cpp CollatzCalculator.cpp ThreadManager.cpp
-HDR = CommandLineParser.hpp TimeHistogram.hpp CollatzCalculator.hpp ThreadManager.hpp
+OBJS = mt-collatz.o CommandLineParser.o FrequencyHistogram.o CollatzCalculator.o ThreadManager.o 
+SRC = mt-collatz.cpp CommandLineParser.cpp FrequencyHistogram.cpp CollatzCalculator.cpp ThreadManager.cpp
+HDR = CommandLineParser.hpp FrequencyHistogram.hpp CollatzCalculator.hpp ThreadManager.hpp
 BINARY = mt-collatz
 
 ${BINARY}: ${OBJS} 
