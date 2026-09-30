@@ -3,9 +3,11 @@
 
 #include "CollatzCalculator.hpp"
 #include "CommandLineParser.hpp"
+#include "FrequencyHistogram.hpp"
 
 int main(int argc, char **argv)
 {
+	FrequencyHistogram *hist = new FrequencyHistogram(); /* mem leak for testing only */
 	uint64_t startValue = 0;
 	size_t numThreads = 0;
 	bool isUnsafeMode = false;
@@ -22,6 +24,8 @@ int main(int argc, char **argv)
 		return EXIT_FAILURE;
 
 	}
+
+	hist->print();
 
 	std::cout << CollatzCalculator::calculateStoppingTime(startValue) << "\n";
 	return EXIT_SUCCESS;
