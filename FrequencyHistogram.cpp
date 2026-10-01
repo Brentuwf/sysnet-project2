@@ -7,7 +7,7 @@ FrequencyHistogram::FrequencyHistogram() : frequencies(new std::size_t[HISTOGRAM
 void FrequencyHistogram::add(std::size_t stoppingTime)
 {
 	if (stoppingTime >= HISTOGRAM_SIZE)
-		throw std::out_of_range("Stopping time exceeds histogram range.");
+		throw std::out_of_range("Stopping time exceeds histogram range");
 
 	std::lock_guard<std::mutex> lock(mutex);
 	++frequencies[stoppingTime];

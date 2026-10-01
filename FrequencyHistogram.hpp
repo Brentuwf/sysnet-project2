@@ -17,7 +17,7 @@ class FrequencyHistogram
 {
 
 	private:
-		static const std::size_t HISTOGRAM_SIZE = 1001;
+		static constexpr std::size_t HISTOGRAM_SIZE = 1001;
 
 		std::unique_ptr<std::size_t[]> frequencies;
 		mutable std::mutex mutex;
