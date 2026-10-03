@@ -31,5 +31,6 @@ int main(int argc, char **argv)
 	threadPool->joinAll();
 
 	hist->print();
+	std::cout << hist->total() << "\n";
 	return EXIT_SUCCESS;
 }

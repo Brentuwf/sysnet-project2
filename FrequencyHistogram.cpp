@@ -18,3 +18,12 @@ void FrequencyHistogram::print() const
 	for (std::size_t i = 0; i < HISTOGRAM_SIZE; ++i)
 		std::cout << i << "," << frequencies[i] << "\n";
 }
+
+std::size_t FrequencyHistogram::total() const 
+{
+	std::size_t total = 0;
+	for (std::size_t i = 0; i < HISTOGRAM_SIZE; ++i) 
+		total += frequencies[i];
+
+	return total;
+}
