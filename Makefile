@@ -7,6 +7,9 @@ SRC = mt-collatz.cpp CommandLineParser.cpp FrequencyHistogram.cpp CollatzCalcula
 HDR = CommandLineParser.hpp FrequencyHistogram.hpp CollatzCalculator.hpp ThreadManager.hpp
 BINARY = mt-collatz
 
+RANGE = 1000000
+NUMTHREADS = 8
+
 ${BINARY}: ${OBJS} 
 	${CC} ${LDFLAGS} -o ${BINARY} ${OBJS}
 
@@ -14,7 +17,7 @@ ${OBJS}: ${SRC} ${HDR}
 	${CC} -c ${CXXFLAGS} ${SRC}
 
 memory-test: ${BINARY}
-	valgrind -s --leak-check=full --show-leak-kinds=all ./${BINARY} -Debug
+	valgrind -s --leak-check=full --show-leak-kinds=all ./${BINARY} ${RANGE} ${NUMTHREADS} 
 
 clean:
 	rm -f ${BINARY} *.o
