@@ -26,9 +26,9 @@ int main(int argc, char **argv)
 		return EXIT_FAILURE;
 
 	}
-	ThreadManager *threadpool = new ThreadManager(numThreads);
-	threadpool->initializeThreads(range, counter, *hist);
-	threadpool->joinAll();
+	std::unique_ptr<ThreadManager> threadPool(new ThreadManager(numThreads));
+	threadPool->initializeThreads(range, counter, *hist);
+	threadPool->joinAll();
 
 	hist->print();
 	return EXIT_SUCCESS;
