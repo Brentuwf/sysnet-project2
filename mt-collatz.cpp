@@ -1,7 +1,6 @@
 #include <iostream>
 #include <stdexcept>
 
-#include "CollatzCalculator.hpp"
 #include "CommandLineParser.hpp"
 #include "FrequencyHistogram.hpp"
 #include "ThreadManager.hpp"
@@ -27,7 +26,10 @@ int main(int argc, char **argv)
 		return EXIT_FAILURE;
 
 	}
+	ThreadManager *threadpool = new ThreadManager(numThreads);
+	threadpool->initializeThreads(range, counter, *hist);
+	threadpool->joinAll();
 
-	std::cout << CollatzCalculator::calculateStoppingTime(range) << "\n";
+	hist->print();
 	return EXIT_SUCCESS;
 }
