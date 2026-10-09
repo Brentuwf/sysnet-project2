@@ -2,9 +2,10 @@
 #include "CollatzCalculator.hpp"
 #include "FrequencyHistogram.hpp"
 
-ThreadManager::ThreadManager(std::size_t numThreads) : threadPool(new std::thread[numThreads])
+ThreadManager::ThreadManager(std::size_t numThreads, bool isUnsafe) : threadPool(new std::thread[numThreads])
 {
 	threadPoolSize = numThreads;
+	isUnsafeMode = isUnsafe;
 
 }
 
@@ -24,9 +25,15 @@ void ThreadManager::initializeThreads(std::uint64_t range, std::uint64_t &counte
 
 std::uint64_t ThreadManager::getNextValue(std::uint64_t &counter) const
 {
-       	counterMutex.lock(); 
-        std::uint64_t value = ++counter;
-	counterMutex.unlock();
+	std::uint64_t value;
+
+       	if (isUnsafeMode) {
+		value = ++counter;	
+	} else {
+		counterMutex.lock(); 
+		value = ++counter;
+		counterMutex.unlock();
+	}
 
         return value;
 }
@@ -39,7 +46,7 @@ void ThreadManager::collatzWorker(std::uint64_t &counter, std::uint64_t limit, F
                 if (value > limit)
                         return;
 
-                hist.add(CollatzCalculator::calculateStoppingTime(value));
+                hist.add(CollatzCalculator::calculateStoppingTime(value), isUnsafeMode);
         }
 }
 
