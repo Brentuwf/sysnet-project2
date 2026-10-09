@@ -9,8 +9,9 @@ void FrequencyHistogram::add(std::size_t stoppingTime)
 	if (stoppingTime >= HISTOGRAM_SIZE)
 		throw std::out_of_range("Stopping time exceeds histogram range");
 
-	std::lock_guard<std::mutex> lock(mutex);
+	histogramMutex.lock();	
 	++frequencies[stoppingTime];
+	histogramMutex.unlock();
 }
 
 void FrequencyHistogram::print() const

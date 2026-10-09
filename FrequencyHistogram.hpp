@@ -20,7 +20,7 @@ class FrequencyHistogram
 		static constexpr std::size_t HISTOGRAM_SIZE = 1001;
 
 		std::unique_ptr<std::size_t[]> frequencies;
-		mutable std::mutex mutex;
+		mutable std::mutex histogramMutex;
 	public:
 		/**
 		 * Constructs a FrequencyHistogram with all frequencies set to zero

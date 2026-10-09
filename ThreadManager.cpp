@@ -24,8 +24,9 @@ void ThreadManager::initializeThreads(std::uint64_t range, std::uint64_t &counte
 
 std::uint64_t ThreadManager::getNextValue(std::uint64_t &counter) const
 {
-        std::lock_guard<std::mutex> lock(counterMutex);
+       	counterMutex.lock(); 
         std::uint64_t value = ++counter;
+	counterMutex.unlock();
 
         return value;
 }
