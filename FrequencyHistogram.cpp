@@ -4,14 +4,18 @@
 
 FrequencyHistogram::FrequencyHistogram() : frequencies(new std::size_t[HISTOGRAM_SIZE]()) {}
 
-void FrequencyHistogram::add(std::size_t stoppingTime)
+void FrequencyHistogram::add(std::size_t stoppingTime, bool isUnsafe)
 {
 	if (stoppingTime >= HISTOGRAM_SIZE)
 		throw std::out_of_range("Stopping time exceeds histogram range");
 
-	histogramMutex.lock();	
-	++frequencies[stoppingTime];
-	histogramMutex.unlock();
+	if (isUnsafe) {
+		++frequencies[stoppingTime];
+	} else {
+		histogramMutex.lock();	
+		++frequencies[stoppingTime];
+		histogramMutex.unlock();
+	}
 }
 
 void FrequencyHistogram::print() const

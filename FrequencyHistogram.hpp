@@ -31,7 +31,7 @@ class FrequencyHistogram
 		 *
 		 * @param size_t The stopping time to record to increment
 		 */
-		void add(std::size_t stoppingTime);
+		void add(std::size_t stoppingTime, bool isUnsafe);
 
 		/**
 		 * Prints the histogram to standard output
