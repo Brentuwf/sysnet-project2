@@ -46,6 +46,5 @@ int main(int argc, char **argv)
 
 	hist->print();
 	std::cerr << range << ","  << numThreads << "," << seconds << "." << nseconds << "\n"; 
-	std::cout << hist->total() << "\n";
 	return EXIT_SUCCESS;
 }
