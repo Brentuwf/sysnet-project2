@@ -1,5 +1,6 @@
 #include <iostream>
 #include <stdexcept>
+#include <ctime>
 
 #include "CommandLineParser.hpp"
 #include "FrequencyHistogram.hpp"
@@ -13,6 +14,10 @@ int main(int argc, char **argv)
 	uint64_t range = 0;
 	size_t numThreads = 0;
 	bool isUnsafeMode = false;
+	struct timespec start; 
+	struct timespec end;
+	time_t seconds = 0;
+	long nseconds = 0;
 
 	try {
 		CommandLineParser::validateArgumentCount(argc);
@@ -27,10 +32,20 @@ int main(int argc, char **argv)
 
 	}
 	std::unique_ptr<ThreadManager> threadPool(new ThreadManager(numThreads, isUnsafeMode));
+
+	clock_gettime(CLOCK_REALTIME, &start);
 	threadPool->initializeThreads(range, counter, *hist);
 	threadPool->joinAll();
+	clock_gettime(CLOCK_REALTIME, &end);
+
+	seconds = end.tv_sec - start.tv_sec;
+	nseconds = end.tv_nsec - start.tv_nsec;
+	if (nseconds < 0) {
+		--seconds;
+	}	
 
 	hist->print();
+	std::cerr << range << ","  << numThreads << "," << seconds << "." << nseconds << "\n"; 
 	std::cout << hist->total() << "\n";
 	return EXIT_SUCCESS;
 }
