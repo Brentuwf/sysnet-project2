@@ -34,7 +34,12 @@ int main(int argc, char **argv)
 	std::unique_ptr<ThreadManager> threadPool(new ThreadManager(numThreads, isUnsafeMode));
 
 	clock_gettime(CLOCK_REALTIME, &start);
-	threadPool->initializeThreads(range, counter, *hist);
+	try {
+		threadPool->initializeThreads(range, counter, *hist);
+	} catch (const std::system_error &) {
+		threadPool->joinAll();
+		return EXIT_FAILURE;
+	}
 	threadPool->joinAll();
 	clock_gettime(CLOCK_REALTIME, &end);
 
