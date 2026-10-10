@@ -52,6 +52,7 @@ void ThreadManager::collatzWorker(std::uint64_t &counter, std::uint64_t limit, F
                 	stoppingTime = CollatzCalculator::calculateStoppingTime(value);
 		} catch (const std::overflow_error &message) {
 			std::cerr << message.what() << "\n";
+			return;
 		}
 
                	hist.add(stoppingTime, isUnsafeMode);

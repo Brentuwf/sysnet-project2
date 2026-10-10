@@ -1,4 +1,5 @@
 #include <stdexcept>
+#include <string>
 #include "CollatzCalculator.hpp"
 
 std::size_t CollatzCalculator::calculateStoppingTime(std::uint64_t value)
@@ -10,7 +11,7 @@ std::size_t CollatzCalculator::calculateStoppingTime(std::uint64_t value)
 			value /= 2;
 		} else {
 			if (value > CollatzCalculator::MAX_ODD_VALUE)
-				throw std::overflow_error("Collatz calculation exceeded uint64_t range");
+				throw std::overflow_error("Collatz calculation for value " + std::to_string(value) + " exceeded uint64_t range");
 
 			value = (3 * value) + 1;
 		}
