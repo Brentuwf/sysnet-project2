@@ -1,3 +1,4 @@
+#include <iostream>
 #include "ThreadManager.hpp"
 #include "CollatzCalculator.hpp"
 #include "FrequencyHistogram.hpp"
@@ -40,13 +41,20 @@ std::uint64_t ThreadManager::getNextValue(std::uint64_t &counter) const
 
 void ThreadManager::collatzWorker(std::uint64_t &counter, std::uint64_t limit, FrequencyHistogram &hist)
 {
+        std::uint64_t value = 0; 
+	size_t stoppingTime = 0;
  	while (true) {
-                std::uint64_t value = getNextValue(counter); 
+		value = getNextValue(counter); 
 
                 if (value > limit)
                         return;
+		try {
+                	stoppingTime = CollatzCalculator::calculateStoppingTime(value);
+		} catch (const std::overflow_error &message) {
+			std::cerr << message.what() << "\n";
+		}
 
-                hist.add(CollatzCalculator::calculateStoppingTime(value), isUnsafeMode);
+               	hist.add(stoppingTime, isUnsafeMode);
         }
 }
 
