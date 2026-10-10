@@ -26,25 +26,29 @@ int main(int argc, char **argv)
 		if (argc == 4) 
 			isUnsafeMode = CommandLineParser::isUnsafeThreadMode(argv[3]);
 
-	} catch (std::exception &message) {
+	} catch (const std::exception &message) {
 		std::cerr << message.what() << "\n";
 		return EXIT_FAILURE;
 
 	}
+
 	std::unique_ptr<ThreadManager> threadPool(new ThreadManager(numThreads, isUnsafeMode));
 
 	clock_gettime(CLOCK_REALTIME, &start);
 	try {
 		threadPool->initializeThreads(range, counter, *hist);
-	} catch (const std::system_error &) {
+	} catch (const std::system_error &message) {
+		std::cerr << message.what() << "\n";
 		threadPool->joinAll();
 		return EXIT_FAILURE;
 	}
+
 	threadPool->joinAll();
 	clock_gettime(CLOCK_REALTIME, &end);
 
 	seconds = end.tv_sec - start.tv_sec;
 	nseconds = end.tv_nsec - start.tv_nsec;
+
 	if (nseconds < 0) {
 		--seconds;
 		/* L used to ensure compiler threats it as a literal long instead of int type */
