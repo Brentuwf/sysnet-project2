@@ -42,6 +42,8 @@ int main(int argc, char **argv)
 	nseconds = end.tv_nsec - start.tv_nsec;
 	if (nseconds < 0) {
 		--seconds;
+		/* L used to ensure compiler threats it as a literal long instead of int type */
+		nseconds += 1000000000L;
 	}	
 
 	hist->print();
