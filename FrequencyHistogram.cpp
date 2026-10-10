@@ -6,9 +6,6 @@ FrequencyHistogram::FrequencyHistogram() : frequencies(new std::size_t[HISTOGRAM
 
 void FrequencyHistogram::add(std::size_t stoppingTime, bool isUnsafe)
 {
-	if (stoppingTime >= HISTOGRAM_SIZE)
-		throw std::out_of_range("Stopping time exceeds histogram range");
-
 	if (isUnsafe) {
 		++frequencies[stoppingTime];
 	} else {
@@ -22,6 +19,11 @@ void FrequencyHistogram::print() const
 {
 	for (std::size_t i = 0; i < HISTOGRAM_SIZE; ++i)
 		std::cout << i << "," << frequencies[i] << "\n";
+}
+
+size_t FrequencyHistogram::getHistogramSize() const 
+{
+	return HISTOGRAM_SIZE;
 }
 
 std::size_t FrequencyHistogram::total() const 

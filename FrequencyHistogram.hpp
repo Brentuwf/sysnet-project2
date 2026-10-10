@@ -40,5 +40,6 @@ class FrequencyHistogram
 		 * the stopping time and its frequency
 		 */
 		void print() const;
+		size_t getHistogramSize() const;
 		std::size_t total() const;
 };
