@@ -18,10 +18,10 @@ void ThreadManager::joinAll()
         }
 }
 
-void ThreadManager::initializeThreads(std::uint64_t range, std::uint64_t &counter, FrequencyHistogram &hist)
+void ThreadManager::initializeThreads(std::uint64_t &counter, std::uint64_t limit, FrequencyHistogram &hist)
 {
 	for(std::size_t i = 0; i < threadPoolSize; ++i) 
-		threadPool[i] = std::thread(&ThreadManager::collatzWorker, this, std::ref(counter), range, std::ref(hist)); 
+		threadPool[i] = std::thread(&ThreadManager::collatzWorker, this, std::ref(counter), limit, std::ref(hist)); 
 }
 
 std::uint64_t ThreadManager::getNextValue(std::uint64_t &counter) const

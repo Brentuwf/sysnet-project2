@@ -65,5 +65,5 @@ class ThreadManager
 		 *
 		 * @throws std::system_error if thread creation fails
 		 */ 
-		void initializeThreads(std::uint64_t range, std::uint64_t &counter, FrequencyHistogram &hist);
+		void initializeThreads(std::uint64_t &counter, std::uint64_t limit, FrequencyHistogram &hist);
 };

@@ -36,7 +36,7 @@ int main(int argc, char **argv)
 
 	clock_gettime(CLOCK_REALTIME, &start);
 	try {
-		threadPool->initializeThreads(range, counter, *hist);
+		threadPool->initializeThreads(counter, range, *hist);
 	} catch (const std::system_error &message) {
 		std::cerr << message.what() << "\n";
 		threadPool->joinAll();
