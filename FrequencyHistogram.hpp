@@ -17,9 +17,15 @@ class FrequencyHistogram
 {
 
 	private:
+		/* Size of histogram, includes 0 throughout 1000 */
 		static constexpr std::size_t HISTOGRAM_SIZE = 1001;
-
+		/*
+		 * array representing the frequencies of collatz stopping time 
+		 * indexes represent stoping times,
+		 * values of indexes represent the frequency of the stopping time in a sequence  
+		 */ 
 		std::unique_ptr<std::size_t[]> frequencies;
+		/* mutex lock to ensure thread safety for adding values to the histogram */
 		mutable std::mutex histogramMutex;
 	public:
 		/**
@@ -27,9 +33,9 @@ class FrequencyHistogram
 		 */
 		FrequencyHistogram();
 		/**
-		 * increases the count for a collatz stopping in the histogram
+		 * increases the count for a collatz stopping time in the histogram
 		 *
-		 * @param size_t The stopping time to record to increment
+		 * @param size_t The stopping time to increment
 		 */
 		void add(std::size_t stoppingTime, bool isUnsafe);
 
@@ -40,6 +46,12 @@ class FrequencyHistogram
 		 * the stopping time and its frequency
 		 */
 		void print() const;
+		/**
+		 * Returns the size of the frequencies array
+		 *
+		 * @return size_t the size of the frequencies array
+		 */
 		size_t getHistogramSize() const;
+		// remove this function only for testing 
 		std::size_t total() const;
 };
