@@ -62,12 +62,12 @@ void ThreadManager::collatzWorker(std::uint64_t &counter, std::uint64_t limit, F
                 	stoppingTime = CollatzCalculator::calculateStoppingTime(value);
 		} catch (const std::overflow_error &message) {
 			std::cerr << message.what() << "\n";
-			return;
+			continue;
 		}
 		
 		if (stoppingTime >= hist.getHistogramSize()) {
 			std::cerr << "Stopping time " << stoppingTime << " exceeds histogram range of " << hist.getHistogramSize() << "\n";
-			return;
+			continue;
 		}
 
                	hist.add(stoppingTime, isUnsafeMode);
