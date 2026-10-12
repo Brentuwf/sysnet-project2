@@ -20,7 +20,7 @@ std::uint64_t counter = 0;
 
 int main(int argc, char **argv)
 {
-	uint64_t range = 0;
+	uint64_t limit = 0;
 	size_t numThreads = 0;
 	bool isUnsafeMode = false;
 	struct timespec start; 
@@ -30,7 +30,7 @@ int main(int argc, char **argv)
 
 	try {
 		CommandLineParser::validateArgumentCount(argc);
-		range = CommandLineParser::parseStartValue(argv[1]);
+		limit = CommandLineParser::parseStartValue(argv[1]);
 		numThreads = CommandLineParser::parseThreadCount(argv[2]);
 		if (argc == 4) 
 			isUnsafeMode = CommandLineParser::isUnsafeThreadMode(argv[3]);
@@ -45,7 +45,7 @@ int main(int argc, char **argv)
 
 	clock_gettime(CLOCK_REALTIME, &start);
 	try {
-		threadPool->initializeThreads(counter, range, *hist);
+		threadPool->initializeThreads(counter, limit, *hist);
 	} catch (const std::system_error &message) {
 		std::cerr << message.what() << "\n";
 		threadPool->joinAll();
@@ -66,6 +66,6 @@ int main(int argc, char **argv)
 	}	
 
 	hist->print();
-	std::cerr << range << ","  << numThreads << "," << seconds << "." << nseconds << "\n"; 
+	std::cerr << limit << ","  << numThreads << "," << seconds << "." << nseconds << "\n"; 
 	return EXIT_SUCCESS;
 }

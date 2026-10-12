@@ -7,8 +7,6 @@
  * @date 10/11/2026
  * @info COP4634
  */
-#include <cerrno>
-#include <cstdlib>
 #include <limits>
 #include <stdexcept>
 #include <string>
@@ -17,42 +15,58 @@
 void CommandLineParser::validateArgumentCount(int argc)
 {
 	if (!(argc == 3 || argc == 4))
-		throw std::invalid_argument("mt-collatz only excepts 2 or 3 command line arguments");
+		throw std::invalid_argument("Usage: ./mt-collatz [upper limit] [number of threads] [-nolock]\n-nolock is optional");
 }
 
-std::uint64_t CommandLineParser::parseStartValue(const char *argument)
+std::uint64_t CommandLineParser::parseStartValue(const char *limitArgument)
 {
-	if (*argument == '\0')
-		throw std::invalid_argument("starting value must be a positive integer");
+	const std::string input(limitArgument);
 
-	char* end = NULL;
-	errno = 0; /* clear error number to see if conversion will result in overflow */
+	if (input.empty() || input.front() == '-')
+		throw std::invalid_argument("Sequence limit must be a positive integer");
 
-	unsigned long long value = std::strtoull(argument, &end, 10);
+	std::size_t pos = 0;
+    	unsigned long long limit = 0;
+	
+	try {
+        	limit = std::stoull(input, &pos, 10);
+	} catch (const std::out_of_range&) {
+		throw std::out_of_range("Sequence limit exceeds the range of an unsigned long long type");
+	} catch (const std::invalid_argument&) {
+		throw std::invalid_argument("Sequence limit must be a positive integer");
+	}
 
-	if (errno == ERANGE || *end != '\0' || value == 0)
-		throw std::invalid_argument("starting value must be a positive integer");
+	if (pos != input.size() || limit == 0)
+		throw std::invalid_argument("Sequence limit must be a positive integer");
 
-	return static_cast<std::uint64_t>(value);
+	return static_cast<std::uint64_t>(limit);
 }
 
-std::size_t CommandLineParser::parseThreadCount(const char* argument)
+std::size_t CommandLineParser::parseThreadCount(const char* numThreadsArgument)
 {
-	if (*argument == '\0')
+	const std::string input(numThreadsArgument);
+
+	if (input.empty() || input.front() == '-')
+		throw std::invalid_argument("Sequence limit must be a positive integer");
+
+	std::size_t pos = 0;
+	unsigned long numThreads = 0;
+
+	try {
+		numThreads = std::stoul(input, &pos, 10);
+	} catch (const std::out_of_range&) {
+		throw std::out_of_range("Thread count exceeds the range of an unsigned long type");
+	} catch (const std::invalid_argument&) {
+		throw std::invalid_argument("Thread count must be a positive integer");
+	}
+
+	if (pos != input.size() || numThreads == 0)
 		throw std::invalid_argument("Thread count must be a positive integer");
 
-	char* end = NULL;
-	errno = 0;
-	/* no direct cast for string to unsigned long exist, cast to unsigend long then to size_t (unsigned int) */
-	unsigned long value = std::strtoul(argument, &end, 10);
+	if (numThreads > std::numeric_limits<std::size_t>::max())
+		throw std::out_of_range("Thread count exceeds the range of an size_t type");
 
-	if (errno == ERANGE || *end != '\0' || value == 0)
-		throw std::invalid_argument("Thread count must be a positive integer");
-
-	if (value > std::numeric_limits<std::size_t>::max())
-		throw std::out_of_range("Thread count exceeds the size_t range");
-
-	return static_cast<std::size_t>(value);
+	return static_cast<std::size_t>(numThreads);
 }
 
 bool CommandLineParser::isUnsafeThreadMode(const char* argument)

@@ -37,7 +37,7 @@ namespace CommandLineParser
 	 * @throws std::invalid_argument if the argument is not a valid integer
 	 * @throws std::out_of_range if the argument exceeds the uint64_t range
 	 */
-	std::uint64_t parseStartValue(const char *argument);
+	std::uint64_t parseStartValue(const char *limitArgument);
 
 	/**
 	 * Parses the number of threads
@@ -49,7 +49,7 @@ namespace CommandLineParser
 	 * @throws std::invalid_argument if the argument is not a valid integer or is zero
 	 * @throws std::out_of_range if the argument exceeds the size_t range
 	 */
-	std::size_t parseThreadCount(const char *argument);
+	std::size_t parseThreadCount(const char *numThreadsArgument);
 
 	 /**
 	 * Determines if the program will run in unsafe thread mode
