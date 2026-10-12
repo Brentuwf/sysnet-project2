@@ -8,6 +8,7 @@
  * @info COP4634
  */
 #include <thread>
+#include <cstdint>
 #include <limits>
 #include <stdexcept>
 #include <string>

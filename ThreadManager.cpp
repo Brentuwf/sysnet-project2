@@ -7,6 +7,7 @@
  * @date 10/11/2026
  * @info COP4634
  */
+#include <cstdint>
 #include <iostream>
 #include "ThreadManager.hpp"
 #include "CollatzCalculator.hpp"

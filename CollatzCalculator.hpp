@@ -9,7 +9,7 @@
 #pragma once
 
 /* for size_t (unsigned int) and uint64_t (unsigned long long) */
-#include <cstddef> 
+#include <cstdint>
 #include <limits>
 
 namespace CollatzCalculator 

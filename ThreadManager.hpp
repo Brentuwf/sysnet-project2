@@ -10,6 +10,7 @@
 #pragma once 
 
 #include <thread>
+#include <cstdint>
 #include "FrequencyHistogram.hpp"
 
 class ThreadManager

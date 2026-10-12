@@ -7,10 +7,10 @@
  * @date 10/11/2026
  * @info COP4634
  */
+#include <ctime>
+#include <cstdint>
 #include <iostream>
 #include <stdexcept>
-#include <ctime>
-
 #include "CommandLineParser.hpp"
 #include "FrequencyHistogram.hpp"
 #include "ThreadManager.hpp"
