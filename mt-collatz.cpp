@@ -1,3 +1,12 @@
+/**
+ * Main driver for the collatz sequence calculation program 
+ * Responsible for creating shared data, parsing user input, and displaying the frequency histogram and its results 
+ * to standard error / standard out  
+ *
+ * @author Brent Anderson
+ * @date 10/11/2026
+ * @info COP4634
+ */
 #include <iostream>
 #include <stdexcept>
 #include <ctime>
@@ -48,10 +57,11 @@ int main(int argc, char **argv)
 
 	seconds = end.tv_sec - start.tv_sec;
 	nseconds = end.tv_nsec - start.tv_nsec;
-
+	
+	/* Handler for borrowing a second if overflow accured */ 
 	if (nseconds < 0) {
 		--seconds;
-		/* L used to ensure compiler threats it as a literal long instead of int type */
+		/* L used to ensure compiler treats it as a literal long instead of int type */
 		nseconds += 1000000000L;
 	}	
 

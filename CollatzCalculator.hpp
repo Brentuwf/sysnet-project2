@@ -8,13 +8,14 @@
  */
 #pragma once
 
-#include <cstddef> /* for size_t (unsigned int) and uint64_t (unsigned long long) */
+/* for size_t (unsigned int) and uint64_t (unsigned long long) */
+#include <cstddef> 
 #include <limits>
 
 namespace CollatzCalculator 
 {
 	/*
-	 * Maximum odd value that can safely undergo the 3n + 1
+	 * Maximum odd value that can safely undergo 3n + 1
 	 * used to prevent overflow on uint64_t
 	 */
 	static constexpr std::uint64_t MAX_ODD_VALUE = (std::numeric_limits<std::uint64_t>::max() - 1) / 3;

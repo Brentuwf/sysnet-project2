@@ -1,3 +1,12 @@
+/**
+ * implements the CommandLineParser namespace
+ * used to parse the command line arguments for the limit of the collatz sequence, 
+ * the number of threads and if locks for thread safety will be used  
+ *
+ * @author Brent Anderson
+ * @date 10/11/2026
+ * @info COP4634
+ */
 #include <cerrno>
 #include <cstdlib>
 #include <limits>
@@ -34,7 +43,7 @@ std::size_t CommandLineParser::parseThreadCount(const char* argument)
 
 	char* end = NULL;
 	errno = 0;
-
+	/* no direct cast for string to unsigned long exist, cast to unsigend long then to size_t (unsigned int) */
 	unsigned long value = std::strtoul(argument, &end, 10);
 
 	if (errno == ERANGE || *end != '\0' || value == 0)

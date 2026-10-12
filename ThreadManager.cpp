@@ -1,3 +1,12 @@
+/**
+ * Implements the ThreadManager class  
+ * Used to create and initialize the number of threads to use in calculating a collatz sequence
+ * Responsbile for safety creating and joining threads    
+ *
+ * @author Brent Anderson
+ * @date 10/11/2026
+ * @info COP4634
+ */
 #include <iostream>
 #include "ThreadManager.hpp"
 #include "CollatzCalculator.hpp"

@@ -1,3 +1,11 @@
+/**
+ * Implements the calculateStoppingTime function in the CollatzCalculator namespace
+ * used to calculate the stopping time for a collatz sequence  
+ *
+ * @author Brent Anderson
+ * @date 10/11/2026
+ * @info COP4634
+ */
 #include <stdexcept>
 #include <string>
 #include "CollatzCalculator.hpp"

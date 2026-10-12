@@ -1,10 +1,10 @@
 /**
  * Defines the FrequencyHistogram class 
  * Used to store the frequencies of each stopping time in a collatz sequence
- * for stopping to 0 through 1000
+ * for stopping times 0 through 1000 inclusive
  *
  * @author Brent Anderson
- * @date 09/30/2026
+ * @date 10/11/2026
  * @info COP4634
  */
 #pragma once

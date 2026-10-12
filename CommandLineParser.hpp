@@ -1,10 +1,10 @@
 /**
  * Defines the CommandLineParser namespace
- * used to parse the command line arguments for starting number
- * number of threads and for thread safety toggle  
+ * used to parse the command line arguments for the limit of the collatz sequence, 
+ * the number of threads and if locks for thread safety will be used  
  *
  * @author Brent Anderson
- * @date 09/30/2026
+ * @date 10/11/2026
  * @info COP4634
  */
 #pragma once

@@ -21,7 +21,7 @@ class ThreadManager
 		std::size_t threadPoolSize;
 		/* determines if mutex locks will be used, true for no locks, false for locks be used to ensure safety */
 		bool isUnsafeMode;
-		/* mutex lock for the shared counter variable */
+		/* mutex lock for the shared counter variable, mutable to be able to be modified in const functions */
 		mutable std::mutex counterMutex;
 		/**
 		 * returns the next value for the collatz sequence 
