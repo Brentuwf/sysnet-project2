@@ -87,7 +87,12 @@ The program will also skip values that cause an overflow when calculating the st
 edge case and I decided not to have to program stop executing, due to its rarity and the large range that would require this to happen. The program will notify the user on the
 value that caused the overflow and no stopping time for the value will be added to the histogram.
 
-https://en.cppreference.com/cpp/thread was used as a refence for how mutex locks are to be used and the difference between scoped_lock and manual lock and unlock functions.
+https://en.cppreference.com/cpp/thread/mutex/lock, https://en.cppreference.com/cpp/thread/mutex/unlock, 
+and https://en.cppreference.com/cpp/thread/scoped_lock was used as a refence for how mutex locks are to be used and 
+the difference between scoped_lock and manual lock and unlock functions.
+
+https://en.cppreference.com/cpp/thread/thread/hardware_concurrency was used to get the number of logical processors on an OS, to avoid creating more threads than logical processors.
+
 ```bash
 man clock_gettime
 ```

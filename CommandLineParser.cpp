@@ -7,6 +7,7 @@
  * @date 10/11/2026
  * @info COP4634
  */
+#include <thread>
 #include <limits>
 #include <stdexcept>
 #include <string>
@@ -25,7 +26,7 @@ std::uint64_t CommandLineParser::parseStartValue(const char *limitArgument)
 	if (input.empty() || input.front() == '-')
 		throw std::invalid_argument("Sequence limit must be a positive integer");
 
-	std::size_t pos = 0;
+	std::size_t pos = 0; /* number of characters processed */
     	unsigned long long limit = 0;
 	
 	try {
@@ -44,12 +45,13 @@ std::uint64_t CommandLineParser::parseStartValue(const char *limitArgument)
 
 std::size_t CommandLineParser::parseThreadCount(const char* numThreadsArgument)
 {
+	const std::size_t processorCount = std::thread::hardware_concurrency(); /* safe hardware_concurrency marked as noexcept */
 	const std::string input(numThreadsArgument);
 
 	if (input.empty() || input.front() == '-')
 		throw std::invalid_argument("Sequence limit must be a positive integer");
 
-	std::size_t pos = 0;
+	std::size_t pos = 0; /* number of character processed */
 	unsigned long numThreads = 0;
 
 	try {
@@ -63,8 +65,11 @@ std::size_t CommandLineParser::parseThreadCount(const char* numThreadsArgument)
 	if (pos != input.size() || numThreads == 0)
 		throw std::invalid_argument("Thread count must be a positive integer");
 
-	if (numThreads > std::numeric_limits<std::size_t>::max())
+	if (numThreads > std::numeric_limits<std::size_t>::max()) /* prevents overflow on 32-bit systems */
 		throw std::out_of_range("Thread count exceeds the range of an size_t type");
+
+	if (numThreads > processorCount)
+    		throw std::out_of_range("Thread count exceeds the number of logical processors");
 
 	return static_cast<std::size_t>(numThreads);
 }
