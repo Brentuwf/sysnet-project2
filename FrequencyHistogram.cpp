@@ -41,12 +41,3 @@ size_t FrequencyHistogram::getHistogramSize() const
 {
 	return HISTOGRAM_SIZE;
 }
-
-std::size_t FrequencyHistogram::total() const 
-{
-	std::size_t total = 0;
-	for (std::size_t i = 0; i < HISTOGRAM_SIZE; ++i) 
-		total += frequencies[i];
-
-	return total;
-}

@@ -51,6 +51,4 @@ class FrequencyHistogram
 		 * @return size_t the size of the frequencies array
 		 */
 		size_t getHistogramSize() const;
-		// remove this function only for testing 
-		std::size_t total() const;
 };

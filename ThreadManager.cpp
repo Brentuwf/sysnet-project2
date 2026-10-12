@@ -74,4 +74,3 @@ void ThreadManager::collatzWorker(std::uint64_t &counter, std::uint64_t limit, F
                	hist.add(stoppingTime, isUnsafeMode);
         }
 }
-

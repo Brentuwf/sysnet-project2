@@ -82,4 +82,3 @@ bool CommandLineParser::isUnsafeThreadMode(const char* argument)
 
 	return true;
 }
-
