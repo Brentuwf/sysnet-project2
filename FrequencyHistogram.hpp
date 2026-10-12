@@ -26,7 +26,7 @@ class FrequencyHistogram
 		 */ 
 		std::unique_ptr<std::size_t[]> frequencies;
 		/* mutex lock to ensure thread safety for adding values to the histogram */
-		mutable std::mutex histogramMutex;
+		std::mutex histogramMutex;
 	public:
 		/**
 		 * Constructs a FrequencyHistogram with all frequencies set to zero
