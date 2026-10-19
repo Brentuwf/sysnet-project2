@@ -50,11 +50,11 @@ Run the program with:
 upper limit and number of threads are required command line arguments for the program to run, they must both be non-zero positive integers.
 
 After exectution the program will print out the histogram to standard output.
-The upper limit of the sequence, the number of threads used, and the time it took to calculate the stopping time 
+The upper limit of the sequence, the number of threads used, the time it took to calculate the stopping time 
 and the creation of the histogram in seconds and nanoseconds is outputed to standard error.
 
 Output for the frequency histogram has been truncated to the first 12 lines. 
-The integer on the left is the stopping time and its frequenncy is displayed on the right.
+The integer on the left is the stopping time and its frequency is displayed on the right.
 
 ```text
 0,1
@@ -84,7 +84,7 @@ The required syntax is:
 The project is intended to run on the department Linux servers.
 
 The program will also skip values that cause an overflow when calculating the stopping time during the (3n+ 1) operation on uint64_t (usigned long long), this is an extreme 
-edge case and I decided not to have to program stop executing, due to its rarity and the large range that would require this to happen. The program will notify the user on the
+edge case and I (Brent Anderson) decided not to have to program stop executing, due to its rarity and the large range that would require this to happen. The program will notify the user on the
 value that caused the overflow and no stopping time for the value will be added to the histogram.
 
 https://en.cppreference.com/cpp/thread/mutex/lock, https://en.cppreference.com/cpp/thread/mutex/unlock, 
