@@ -1,5 +1,5 @@
 /**
- * Defines the ThreadManager class 
+ * Declares the ThreadManager class 
  * Used to create and initialize the number of threads to use in calculating a collatz sequence
  * Responsbile for safety creating and joining threads    
  *

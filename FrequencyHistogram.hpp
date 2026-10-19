@@ -1,5 +1,5 @@
 /**
- * Defines the FrequencyHistogram class 
+ * Declares the FrequencyHistogram class 
  * Used to store the frequencies of each stopping time in a collatz sequence
  * for stopping times 0 through 1000 inclusive
  *

@@ -1,5 +1,5 @@
 /**
- * Defines the CommandLineParser namespace
+ * Declares the CommandLineParser namespace
  * used to parse the command line arguments for the limit of the collatz sequence, 
  * the number of threads and if locks for thread safety will be used  
  *

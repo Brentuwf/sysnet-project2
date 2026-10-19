@@ -1,5 +1,5 @@
 /**
- * Defines the CollatzCalculator namespace
+ * Declares the CollatzCalculator namespace
  * used to calculate the stopping time for a collatz sequence  
  *
  * @author Brent Anderson
