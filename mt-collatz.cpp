@@ -16,7 +16,7 @@
 #include "ThreadManager.hpp"
 
 std::unique_ptr<FrequencyHistogram> hist(new FrequencyHistogram());
-std::uint64_t counter = 0;
+std::uint64_t counter = 0; /* safe thread worker increases by one before calculating stopping time */
 
 int main(int argc, char **argv)
 {
