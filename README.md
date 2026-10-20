@@ -97,6 +97,7 @@ https://en.cppreference.com/cpp/thread/thread/hardware_concurrency was used to g
 man clock_gettime
 ```
 The man page for clock_gettime was used to determine the correct structures and variables types to use, and how to correct nanoseconds when a overflow into seconds occurs.
+
 The use of std::unique_ptr and #pragma once was learned from https://cplusplus.com/ when I (Brent Anderson) was teaching myself modern C++ (C++14-C++23)
 
 ## Problems
